@@ -1,23 +1,25 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jokes</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-   <h1>Dormitorio</h1> 
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Dormitorio</h1>
 
-   <p><%= value %> </p>
+    <p><%= value %></p>
+    <p class="p1"><%= ip %></p>
+    <p class="p1"><%= hostname %></p>
+    <p class="p1"><%= requestTime %></p>
 
+    <button id="refreshButton">Another One</button>
+    <script>
+      const refreshButton = document.querySelector("#refreshButton");
 
-   <button id="refreshButton">Another One</button>
-<script>
-const refreshButton = document.querySelector("#refreshButton")
-
-refreshButton.addEventListener("click", () => {
-  window.location.reload();
-});
-</script>
-</body>
+      refreshButton.addEventListener("click", () => {
+        window.location.reload();
+      });
+    </script>
+  </body>
 </html>
