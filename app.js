@@ -3,7 +3,7 @@ const express = require('express');
 
 const mongoose = require('mongoose');
 
-const model =  require("./db")
+const model = require("./db")
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -13,12 +13,13 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
+const mongodbUri = process.env.mongodbUri
 
 
 app.get('/', async (req, res) => {
-    
-   
-    const data  = await model.aggregate().sample(1).exec()
+
+
+    const data = await model.aggregate().sample(1).exec()
     const name = data[0].name
     const joke = data[0].joke
     console.log(data)
@@ -37,21 +38,21 @@ app.get('/', async (req, res) => {
 });
 
 
-app.get('/write/jokes', (req,res) => {
+app.get('/write/jokes', (req, res) => {
     res.render('input')
-   
+
 })
 
-app.post('/write/jokes', (req,res) => {
+app.post('/write/jokes', (req, res) => {
     const joke = req.body.joke
     const name = req.body.name
     const document = new model()
     document.name = name
     document.joke = joke
     document.save()
-  
+
     res.json({
-        value:"write a joke"
+        value: "write a joke"
     })
 
 })
@@ -59,13 +60,13 @@ app.post('/write/jokes', (req,res) => {
 
 app.listen(9000, () => {
     console.log('App started on port 9000');
-    mongoose.connect("mongodb+srv://ugwariuchechi2020:TKHdLyLzhMfYnpKA@jokers.z92j9us.mongodb.net/") 
-    .then(() => {
-        console.log("Database connected")
-    })
-     .catch((err) => {
-        console.log(err)
-    })
+    mongoose.connect(mongodbUri)
+        .then(() => {
+            console.log("Database connected")
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 });
 
 
