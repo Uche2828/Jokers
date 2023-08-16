@@ -6,12 +6,18 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+
+    <nav>
+      <a href="/write/jokes">Write a joke</a>
+    </nav>
     <h1>Dormitorio</h1>
 
     <p><%= value %></p>
+    <p class="p1"><%= name %></p>
     <p class="p1"><%= ip %></p>
     <p class="p1"><%= hostname %></p>
     <p class="p1"><%= requestTime %></p>
+    
 
     <button id="refreshButton">Another One</button>
     <script>
